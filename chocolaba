@@ -1,0 +1,36 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Введите количество денег: ");
+        int money = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Введите стоимость шоколада: ");
+        int price = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Введите количество оберток необходимых для получения шоколада: ");
+        int wrap = Convert.ToInt32(Console.ReadLine());
+
+        int totalChocolates = CalculateMaxChocolates(money, price, wrap);
+
+        Console.WriteLine("Максимально возможное количество шоколадок: " + totalChocolates);
+    }
+
+    static int CalculateMaxChocolates(int money, int price, int wrap)
+    {
+
+        int choco = money / price;
+        int wrappers = choco;
+
+
+        while (wrappers >= wrap)
+        {
+
+            int newChocolates = wrappers / wrap;
+            choco = choco + newChocolates;
+            wrappers = newChocolates + (wrappers % wrap);
+        }
+
+        return choco;
+    }
+}
